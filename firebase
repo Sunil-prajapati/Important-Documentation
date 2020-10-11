@@ -1,0 +1,3 @@
+npm install --save firebase
+
+import {GiftedChat} from 'react-native-gifted-chat';

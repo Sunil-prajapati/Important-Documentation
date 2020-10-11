@@ -1,0 +1,393 @@
+LIFE CYCLE OF COMPONENTS
+
+1. Constructor(props)
+2. componentDidMount()
+3. componentDidUpdate(props,prevstate) in this we first compare the state and props then we will fetch the data
+4. render()
+5. componentWillUnmount() it will vanish the present data of the page like when you want to go to the about page then your home page data has been vanished properly if you did it in this state
+
+first of all constructor run then render and then componentDidMount
+we don't need to import anything for componentDidMount
+componentDidMount run when every html and states are run properly then turns come of componentDidMount
+we should call API in componentDidMount
+
+
+after click then first render run and then componentDidUpdate will run but it has only previous state value
+
+
+==============================================
+REDUX:
+
+Redux is just a better way to manage the data
+Redux is predictable state container for javascript app(store the state of container)
+
+import createStore from redux;
+import {Provider} from 'react-redux'  it is use to rap the whole component
+
+function movieReducer(state,action){  in the state section we add all the data or intial state of data
+	return state   //return state always  and reducer is pure function
+}
+
+const store = createStore(movieReducer);  we must need reducer in the createStore function 
+
+<Provider store={store}> pass store as a property of provider
+	<Home>
+</Provider>
+
+
+
+which page i have to connect with the redux then we use below methods
+import {Connect} from 'react-redux';
+export default connect()(Home)   in the connect second agrument as const function and in the first argument we send state and dispatch action 
+
+
+then use dispatch the action
+in the dispatch we have type and payload
+
+
+
+================================
+PROMISE:
+ A promise is an object that my produce a single value some time in future either a resolved value or a reason that it's not resolved(rejected)
+states of promise
+*Fullfiled
+*Rejected
+*Pending
+
+we had call backs before promises
+
+.catch caught any type of error in promise
+catch only run if something fails
+Promise.all takes array of promises
+
+example of call backs:
+-------------------------------------
+movePlayer(100,'left',function(){
+	movePlayer(400,'right',function(){
+	});
+});
+
+
+
+
+example of promise:
+----------------------------------------------
+const promise = new Promise((resolve,reject) => {
+	if(true){
+		resolve("stuff worked");
+	}else{
+		reject("Error,it broke");
+	}
+})
+
+const promise2 = new Promise((resolve,reject) => {
+	setTimeout(resolve,100,'Hiii')
+})
+
+const promise3 = new Promise((resolve,reject) => {
+	setTimeout(resolve,1000,'Pookie')
+})
+
+const promise4 = new Promise((resolve,reject) => {
+	setTimeout(resolve,3000,'Is it me  you are looking for?')
+})
+
+Promise.all([promise,promise2,promise3,promise4])
+.then(value => {
+	console.log(value);
+})
+
+
+promise
+.then(result => result + '!')
+.then(result2 => {
+	throw Error
+	console.log(result2)
+})
+.catch(() => console.log('error!'))
+
+
+promise
+.then(result => result + '!')
+.then(result2 => result2 + '?')
+.catch(() => console.log('error!'))
+.then(result3 => {
+	console.log( result3 + '!');
+})
+
+-----------------------------------------
+REAL TIME EXAMPLE OF PROMISES
+
+const urls = [
+	'http://jsonplaceholder.typicode.com/posts',
+	'http://jsonplaceholder.typicode.com/users',
+	'http://jsonplaceholder.typicode.com/albums'
+]
+Promise.all(urls.map(url => {
+	return fetch(url).then(response => response.json())
+})).then(results => {
+	console.log(results[0])
+	console.log(results[1])
+	console.log(results[2])
+}).catch(() => console.log('error'))
+================================================================
+ES8 OR Async
+
+asyc function playGame()
+awiat
+in the async there is no at all any function .catch that's why we use try catch error handling
+
+example:
+----------------------------------
+
+async function fetchUsers(){
+	const response = await fetch('http://jsonplaceholder.typicode.com/users')
+	const data = await response.json();
+	console.log(data);
+}
+----------------------------------
+const urls = [
+	'http://jsonplaceholder.typicode.com/posts',
+	'http://jsonplaceholder.typicode.com/users',
+	'http://jsonplaceholder.typicode.com/albums'
+]
+
+const getData = async function(){
+	const [users,posts,albums] = await Promise.all(urls.map(url =>
+	 fetch(url).then(response => response.json())
+	))
+	console.log('users',users)
+	console.log('posts',posts)
+	console.log('albums',albums)
+}
+
+-----------------------------------
+ES9(Object Spread operator)
+finally: it will be always call either promise reject or resolved at the most time we used it at the end of code,we use as notification or alert
+
+const animals ={
+	tigers:23,
+	monkey:10,
+	lion:1,
+}
+const {tigers, ...rest} = animals;
+
+const array = [1,2,3,4,5];
+function sum(a,b,c,d,e){
+	return a+b+c+d+e;
+}
+sum(...array);
+------------------------------------------
+Parallel: run all promise at the same time by using Promise.all(array); faster then sequence but slower then race
+sequence:run all promises by sequence using async await and sequence().then(); it is slowest method
+race : run who appear first by using Promise.race(array); it is faster then any other method because he has to run only first request
+
+==========================================
+in the class component render function is must
+
+for example:
+-------------
+class App extends React.components{
+	render(){
+		return(
+		)
+	}
+}
+
+
+secureTextEntry
+maxLength
+keyboardType 
+onChangeText={(text)} => {this.setstate({name:text})}
+onBlur={()=> this.emailvalidation}
+
+
+
+import React, {Component} from 'react';
+import  {Router,Stack,Scene} from 'react-native-router-flux';
+import Login from '../src/pages/login';
+import Signup from '../src/pages/Signup';
+
+class Routers extends React.Component{
+    render(){
+        return(
+            <Router hideNavBar={true}>
+                <Stack key='root'>
+                    <Scene key="login" Component={Login} title="Login"/>
+                    <Scene key="register" Component={Signup} title="Register"/>
+                    <Scene key="home" Component={Home}/>
+                </Stack>
+            </Router>
+        )
+    }
+}
+==========================
+JSON.stringify(obj)  is used to change the obj into string because you have to send the data into the server in string format
+
+JSON.prase(obj)  is used for converting string into object
+
+
+AsyncStorage.setItem('user',JSON.stringify(obj));
+
+dispay = async() => {
+	let user = await AsyncStorage.getItem('user');
+	let prased = JSON.prase(user);
+	alert(prased.name);
+}
+
+=========================================
+Pure Components in React
+
+Prevents re-rendering of Component if props or state is the same
+Takes care of “shouldComponentUpdate” implicitly
+State and Props are Shallow Compared
+Pure Components are more performant in certain cases
+
+
+React Components re-renders in the following scenarios:
+“setState” is called in Component
+“props” values are updated
+this.forceUpdate() is called
+
+
+
+
+DIFF BW STATE AND PROPS:
+
+Previously I have mentioned that ‘props’ are set by the parent component and they are passed to a child component. The child component can’t change the values in ‘props’. For handling any changeable data we need to use a different component property called ‘state’.
+
+A ‘state’ is used to store data that may change in a component. Each component has a different ‘state’ values. Based on these values, the UI is changed.
+
+One more important thing is that we can’t change any value in a state directly. For that, we need to call one method called ‘setState’. This method modifies the current state and re-render the whole component.
+======================
+FLATLIST:
+
+it has two attributes i.e data and renderItem in the data attr we have to send all the data and in renderItem attribute we have data + item and index of elements  if we write item in between {} then we have direct data without index e.g:item.name
+
+
+without key initialization if we want to delete the particular element but it will delete all the items 
+key must be string and unique if we pass static
+we juse keyExtractor{(friend) => friend.name}
+if we add horizontal attr in flat list then we can scroll through the horizontal rather then vertically
+showHorizontalScrollIndicator={false}
+=================================
+advantages of touchablity over button we can use it over images and some big pictuers rather then button
+
+props => {image,title,whta}
+render = give, provide 
+
+========================
+in the navigator we dont need to declare view element 
+------------------------------
+The scope is global when a var variable is declared outside a function. This means that any variable that is declared with var outside a function block is available for use in the whole window.
+
+var is function scoped when it is declared within a function. This means that it is available and can be accessed only within that function.
+
+
+--------------------------------
+let can be updated but not re-declared.
+const cannot be updated or re-declared
+==================================
+
+
+
+REDUCER: function that manages changes to an object
+
+function that gets called with two objects
+Argumnet1: object that has all of our state in it
+Argumnet2: object that describes  the update we want to make it
+
+1) we never change argument one directly
+2) we must always return a value to be used as argument 1
+
+hooks:
+useState,useEffect and useReducer are the hooks
+in the reducer we have to return state always
+dispatch:run my reducer
+
+in the action we have type and payload
+type: tell us the exact change operation 
+payload: critical change which we want
+========================================
+
+
+ALL ARE IN PARENT ELEMENT SUCH AS VIEW
+
+
+alignItems:flex-end
+alignItems:flex-start
+alignItems:center
+
+
+flexDertion:'column'
+flexDertion:'row'
+flexDertion:'row-reverse'
+flexDertion:'column-revrse'
+
+
+justifyContent:'flex-start'
+justifyContent:'center'
+justifyContent:'space-around'
+justifyContent:'space-between'
+
+=============================================
+Context:
+
+
+import createContext();
+then make class like "BlogProvider" extends component and export it  OR we can make it with functional component also
+but always export default which is  createContext() const like "BlogContext"
+using class "BlogProvider" wrap all the component and always use children property"this.props.children"
+use in the index page we have to import {useContext} in this we use  "BlogContext"
+useContext = value which is given in provider
+
+
+now we don't use navigation.getParam('id') fro getting ID it's replace by "route" 
+
+header button to navigate from one screen to another
+options={({ navigation, route }) => ({
+            headerRight: props => <Button title="+" onPress={() => navigation.navigate('Create')}/>,
+          })}
+
+
+=============================
+initialState:
+----------------------------
+const people = [
+  {name: 'Jay', alive: true},
+  {name: 'Kailee', alive: true},
+  {name: 'John', alive: true},
+  {name: 'Mia', alive: true}
+]
+---------------------------
+
+const reducer = (people, action){
+	
+}
+
+
+const [state, dispatch] = useReducer(reducer, initialState);
+==============================
+A higher-order component (HOC) is an advanced technique in React for reusing component logic.Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
+
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
+
+=================setup for ios==================
+install Xcode
+brew update
+brew install node
+4.5 is minimum version we need of node for react native 
+node -v
+brew install watchman
+npm install -g react-native-cli 
+pwd
+
+==========================setup for windows==============================
+java sdk
+node
+python 2(only)
+android studio
+
+============================AXIOS==================
+
+axios library for ajax and HTTP requests 

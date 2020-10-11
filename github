@@ -1,0 +1,14 @@
+ls
+cd "E:\ReactNative"
+cd..
+cd First/
+git init
+git add .
+git commit -m "First commit"
+git status
+git remote add origin https://github.com/Sunil-prajapati/Album.git
+git push -u origin master (--force if show some error)
+
+
+git help
+https://github.com/Sunil-prajapati/

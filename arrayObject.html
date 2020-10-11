@@ -1,0 +1,120 @@
+
+var arr = [
+  "Hi",
+  "Hello",
+  "Bonjour"
+];
+ 
+// append new value to the array  using unshift add elements at the first position of array
+arr.push("Hola");
+
+console.log(arr);
+
+
+
+const colors = ['yellow', 'red']
+
+colors.splice(1, 0, 'blue')   // Splice array in JavaScript is a method that adds or removes items to or from the array
+//colors === ['yellow', 'blue', 'red']  we can use pop to remove last one element of array
+ 
+
+
+
+const array = [2, 5, 9];
+
+console.log(array);
+
+const index = array.indexOf(5);
+if (index > -1) {
+  array.splice(index, 1);
+}
+
+// array = [2, 9]
+console.log(array); 
+
+
+// =================================== object =================================
+var element = {}
+element.id = id;
+element.quantity = quantity;
+
+
+    var person = {
+        name: "Harry",
+        age: 16,
+        gender: "Male"
+    };
+    
+    // Deleting a property completely
+    delete person.age;
+    alert(person.age); // Outputs: undefined
+    console.log(person); // Prints: {name: "Harry", gender: "Male"}
+
+------------------------------------
+// Example 'person' object
+var person = {
+  name: 'Zac',
+  age: 33,
+  likesCoding: true
+};
+
+
+ACCESS
+
+// Dot notation
+person.age // returns 33
+
+// Bracket notation
+person['age'] // returns 33
+
+CHANGE 
+
+person.likesCoding = false;
+
+
+ADD
+person.hobbies = ['hiking', 'travel', 'reading'];
+
+
+REMOVE/DELETE
+delete person.age;
+
+--------------------------------------------------
+var vacationSpots = ['Tokyo', 'Bali', 'Mexico City', 'Vancouver'];
+
+ACCESS
+vacationSpots[2];
+
+ADD
+// push() - Adds item(s) to the end of an array
+vacationSpots.push('Miami');
+
+// unshift() - Adds item(s) to the beginning of an array
+vacationSpots.unshift('Cape Town', 'Moscow');
+
+var ar = ['one', 'two', 'three'];
+ar[3] = 'four';
+
+var ar = ['one', 'two', 'three'];
+var ar2 = ar.concat('four');
+console.log( ar2 );
+
+
+
+
+
+
+REMOVE
+// pop() - Removes the last item from an array
+vacationSpots.pop();
+
+// shift() - Removes the first item from an array
+vacationSpots.shift();
+
+arr.splice(indexToRemove, numberToRemove); index and indexValue we need in the splice in-built function
+
+
+ 
+
+4e9cf4c0 api key 
+http://www.omdbapi.com/?i=tt3896198&apikey=4e9cf4c0

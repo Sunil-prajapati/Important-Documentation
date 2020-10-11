@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OPPS</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	function createElf(name,weapon){
+		return {
+			name,
+			weapon,
+			attack(){
+				return name+"attack with " + weapon
+			}
+		}
+	}
+
+	const peeter = createElf("peeter","stones");
+	peeter.attack;
+	const sam = createElf("sam","fire");
+	sam.attack;
+
+	// ==============================CONSTRUCTOR function================
+	function Elf(name,weapon){  //in constructor function name of function always starts with capital letter
+		this.name;
+		this.weapon;
+	}
+	const man = new Elf('man','study');
+	man.name;
+	const anj = new Elf('ali','smile');
+	anj.weapon;
+
+
+	const Elf1 = new Function('name','weapon',
+		'this.name; this.weapon;')
+	const sarah = new Elf1('sarah','fireworks');
+	console.log(sarah);
+
+	// ====================== opp4 es6 class ============================
+	class ElfN{
+		constructor(name,weapon){
+			this.name;
+			this.weapon;
+		}
+		attack(){
+			return 'attack with ' + this.weapon
+		}
+	}
+
+	const pari = new ElfN('pari','fireworks');
+	console.log(pari.attack);
+	// ====================================== new binding ===================
+	function person(name,age){
+		this.name;
+		this.age;
+	}
+	const person1 = new person("sam",22);
+	console.log(person1);
+
+	// =================== INHERITANCE ================
+
+	class Character{
+		constructor(name,weapon){
+			this.name;
+			this.weapon;
+		}
+		attack(){
+			return 'attack with ' + this.weapon
+		}
+	}
+
+	class NewElf extends Character{  // when we use this function in extends claaa then we have to call the super class by super method i.e super()
+		constructor(name,weapon,type){
+			super(name,weapon);
+			this.type;
+		}
+	}
+
+	class Orge extends Character{
+		constructor(name,weapon,color){
+			super(name,weapon);
+			this.color  //properites
+		}
+		makeFort(){  //methods
+			return 'strongest fort in the world';
+		}
+	}
+
+	const fiona = new NewElf('fiona','ninja stars','house');
+	fiona;
+
+	const dolby = new Orge('dolby','Fire','red');
+	dolby.makeFort;
+
+
+	// =============================== PUBLIC VS PRIVATE ===============
+
+	// polymorphisum means many form just override the methods of diff classes
+	//in some method we padd parameters and other methods no any parameters like attack(cry),attack(),attack(1,2,3)
+
+
+	//Abstraction hides certain details and only show the essential features of the object. It tries to reduce and factor out details so that the developer can focus on a few concepts at a time. This approach improves understandability as well as maintainability of the code
+
+	//The JavaScript Encapsulation is a process of binding the data (i.e. variables) with the functions acting on that data. It allows us to control the data and validate it
+</script>
+</html>

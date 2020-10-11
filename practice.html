@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Practice</title>
+</head>
+<body>
+
+
+</body>
+<script type="text/javascript">
+	var a = 5;
+	var b = a;
+	b++;
+	console.log(b); //pass by value in primtive in this does't change the vale of first var 
+
+	obj1 = {name:"sunil",password:"qwert"};
+	obj2 = obj1.password = "asdfg";
+	console.log(obj1);  // pass by refrence	in this does change the vale of first object because of non-primtive
+	console.log(obj2); 
+//=============================
+	var c = [1,2,3,4];
+	var d = c;
+	d.push(12345);
+	console.log(c); // in this override the vale of c 
+	console.log(d);
+
+
+	var c = [1,2,3,4];
+	var d = [].concat(c);
+	d.push(12345);
+	console.log(c);
+	console.log(d); // in this we did't override the the value of c 
+
+//================================
+let obj = {a:'a',b:'b',c:'c'};
+let clone = Object.assign({},obj);
+obj.c = 5;
+console.log(clone);
+console.log(obj);
+
+//===============================
+1 == "1";  //check equalitiy only
+1 === "1" // check equalitiy and type of value
+
+if(1){ //or true
+	console.log(5);
+}  //output 5
+
+if(0){  // or false
+	console.log(5);
+}  //output undefined
+
+Object.is(-0,+0);
+</script>
+</html>
